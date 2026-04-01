@@ -55,10 +55,22 @@ Open [http://localhost:3000](http://localhost:3000).
 - The private vault has no admin or executive bypass.
 - No offensive tooling is included.
 
-## Suggested next 5 improvements
+## Screenshots
 
-1. Add real authentication and per-user sessions instead of manual role selection.
-2. Add a policy editor for permissions, inheritance, and trust thresholds.
-3. Add trend charts for allows, denies, and Labyrinth routing over time.
-4. Add signed audit exports for compliance reviews and incident walkthroughs.
-5. Add a browser-crypto vault unlock flow for a more realistic client-side encryption demo.
+### Hero Dashboard / System Overview
+![Hero Dashboard / System Overview](images/hero-dashboard.png)
+
+### Access Request Console and Guardian Decision Engine
+![Access Request Console and Guardian Decision Engine](images/console-decision-engine.png)
+
+### Policy Matrix and Labyrinth View
+![Policy Matrix and Labyrinth View](images/policy-matrix-labyrinth.png)
+
+### User Private Vault View
+![User Private Vault View](images/private-vault-view.png)
+
+### Audit and Threat Intelligence Log
+![Audit and Threat Intelligence Log](images/audit-threat-log.png)
+
+### Architecture / About
+![Architecture / About](images/architecture-about.png)
