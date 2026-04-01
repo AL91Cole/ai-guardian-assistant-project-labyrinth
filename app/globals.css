@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --bg-main: #050816;
+  --bg-surface: rgba(7, 15, 35, 0.76);
+  --line: rgba(103, 232, 249, 0.16);
+  --text-soft: #93c5fd;
+  --text-strong: #f8fafc;
+  --panel-shadow: 0 18px 60px rgba(2, 8, 23, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  background:
+    radial-gradient(circle at top, rgba(34, 211, 238, 0.16), transparent 34%),
+    radial-gradient(circle at right, rgba(16, 185, 129, 0.12), transparent 25%),
+    radial-gradient(circle at left bottom, rgba(244, 114, 182, 0.08), transparent 24%),
+    linear-gradient(180deg, #030712 0%, #050816 42%, #06101c 100%);
+  color: var(--text-strong);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Bahnschrift, "Segoe UI", "Arial Nova", sans-serif;
+  letter-spacing: 0.01em;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+::selection {
+  background: rgba(59, 130, 246, 0.45);
+}
+
+.glass {
+  background: var(--bg-surface);
+  border: 1px solid var(--line);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    var(--panel-shadow);
+  backdrop-filter: blur(20px);
+}
+
+.grid-line {
+  background-image:
+    linear-gradient(rgba(59, 130, 246, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.07) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+.orb-float {
+  animation: orb-float 8s ease-in-out infinite;
+}
+
+.section-anchor {
+  scroll-margin-top: 6.5rem;
+}
+
+@keyframes orb-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(0, 12px, 0) scale(1.04);
+  }
+}
