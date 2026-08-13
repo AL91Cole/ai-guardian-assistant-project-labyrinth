@@ -1,6 +1,22 @@
 import Dashboard from '@/components/dashboard'
-import { getDecisionSummary, getLabyrinthEvents, getRecentLogs } from '@/lib/db'
-import { actionOptions, getResourceLabel, policyMatrix, resourceOptions, roleOptions } from '@/lib/policies'
+import {
+  getAuditIntegrity,
+  getDecisionSummary,
+  getLabyrinthEvents,
+  getRecentAlerts,
+  getRecentLogs,
+} from '@/lib/db'
+import {
+  actionOptions,
+  deviceComplianceOptions,
+  identityStatusOptions,
+  networkZoneOptions,
+  policyMatrix,
+  policyVersion,
+  resourceOptions,
+  roleOptions,
+} from '@/lib/policies'
+import { getScenarioCatalog } from '@/lib/scenarios'
 import { defaultVaultOwner, getVaultOwners, getVaultSimulation } from '@/lib/vault'
 
 export const dynamic = 'force-dynamic'
@@ -10,24 +26,29 @@ export default function HomePage() {
     requesterRole: 'Employee',
     requesterName: defaultVaultOwner,
     vaultOwner: defaultVaultOwner,
-    allowed: true,
+    ownerKeyPresent: false,
+    allowed: false,
   })
 
   return (
     <Dashboard
       initialData={{
-        logs: getRecentLogs(12),
-        labyrinthEvents: getLabyrinthEvents(6),
+        logs: getRecentLogs(20),
+        labyrinthEvents: getLabyrinthEvents(10),
+        alerts: getRecentAlerts(20),
         summary: getDecisionSummary(),
+        integrity: getAuditIntegrity(),
         vault: initialVault,
         roles: roleOptions,
         actions: actionOptions,
-        resources: resourceOptions.map((item) => ({
-          ...item,
-          description: getResourceLabel(item.value),
-        })),
+        resources: resourceOptions,
         policies: policyMatrix,
+        policyVersion,
         vaultOwners: getVaultOwners(),
+        identityStatuses: identityStatusOptions,
+        deviceCompliance: deviceComplianceOptions,
+        networkZones: networkZoneOptions,
+        scenarios: getScenarioCatalog(),
       }}
     />
   )

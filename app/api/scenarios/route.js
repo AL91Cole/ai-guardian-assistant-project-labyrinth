@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server'
-import { getAuditIntegrity, getDecisionSummary, getRecentLogs } from '@/lib/db'
+import { getScenarioCatalog } from '@/lib/scenarios'
 
 export const dynamic = 'force-dynamic'
 
 export async function GET() {
   return NextResponse.json(
-    { logs: getRecentLogs(50), summary: getDecisionSummary(), integrity: getAuditIntegrity() },
+    { scenarios: getScenarioCatalog() },
     { headers: { 'Cache-Control': 'no-store' } },
   )
 }

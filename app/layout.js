@@ -1,9 +1,9 @@
 import './globals.css'
 
 export const metadata = {
-  title: 'AI Guardian Assistant: Project Labyrinth',
+  title: 'Project Labyrinth v0.2.0 | Zero-Trust Detection Lab',
   description:
-    'A zero-trust defensive simulation with dynamic access decisions, a privacy-preserving vault, and The Labyrinth deception layer.',
+    'An explainable zero-trust detection and response simulation with defensive deception, alert triage, and tamper-evident audit evidence.',
 }
 
 export default function RootLayout({ children }) {

@@ -4,5 +4,8 @@ import { getLabyrinthEvents } from '@/lib/db'
 export const dynamic = 'force-dynamic'
 
 export async function GET() {
-  return NextResponse.json({ events: getLabyrinthEvents(10) })
+  return NextResponse.json(
+    { events: getLabyrinthEvents(20) },
+    { headers: { 'Cache-Control': 'no-store' } },
+  )
 }
