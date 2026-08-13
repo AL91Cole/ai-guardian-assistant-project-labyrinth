@@ -1,0 +1,21 @@
+# Dependencies and Next.js output
+node_modules/
+.next/
+out/
+coverage/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Runtime database files
+data/*.sqlite
+data/*.sqlite-*
+data/*.db
+data/*.db-*
+
+# Logs and operating-system files
+*.log
+.DS_Store
+Thumbs.db
