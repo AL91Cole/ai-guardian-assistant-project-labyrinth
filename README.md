@@ -16,6 +16,55 @@ Project Labyrinth is an explainable zero-trust detection-and-response lab. It ev
 - Hash-linked audit records with in-app integrity verification plus JSON and CSV exports
 - Security headers, bounded demo rate limiting, ignored runtime databases, tests, linting, dependency audit, and GitHub Actions CI
 
+## Interface tour
+
+These screenshots show a local v0.2.0 run with synthetic identities, requests, vault records, decoy assets, alerts, and audit evidence. Select any image to view it at full resolution.
+
+<p align="center">
+  <a href="images/hero-dashboard.png">
+    <img src="images/hero-dashboard.png" alt="Project Labyrinth v0.2.0 dashboard showing request, trust, alert, and verified audit-chain metrics" width="100%">
+  </a>
+</p>
+
+<table>
+  <tr>
+    <td width="50%">
+      <strong>Access request console</strong><br>
+      <a href="images/access-request-console.png"><img src="images/access-request-console.png" alt="Access Request Console beside the Explainable Guardian Decision panel"></a>
+    </td>
+    <td width="50%">
+      <strong>Least-privilege policy matrix</strong><br>
+      <a href="images/least-privilege-policy-matrix.png"><img src="images/least-privilege-policy-matrix.png" alt="Least-Privilege Policy Matrix showing permissions by resource and role"></a>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>Owner-controlled private vault</strong><br>
+      <a href="images/private-vault-simulation.png"><img src="images/private-vault-simulation.png" alt="Private Vault Simulation showing a sealed owner-controlled vault and simulated encrypted records"></a>
+    </td>
+    <td width="50%">
+      <strong>Defensive deception route</strong><br>
+      <a href="images/defensive-deception-labyrinth.png"><img src="images/defensive-deception-labyrinth.png" alt="The Labyrinth showing a critical suspicious session, observed indicators, and decoy assets"></a>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>Alert triage workflow</strong><br>
+      <a href="images/alert-triage-queue.png"><img src="images/alert-triage-queue.png" alt="Alert Triage Queue with assignment, disposition, notes, and case-status controls"></a>
+    </td>
+    <td width="50%">
+      <strong>Tamper-evident audit log</strong><br>
+      <a href="images/audit-threat-intelligence-log.png"><img src="images/audit-threat-intelligence-log.png" alt="Audit and Threat Intelligence Log showing Allow, Deny, and Route decisions with a verified hash chain"></a>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <strong>Architecture and ethics</strong><br>
+      <a href="images/architecture-and-ethics.png"><img src="images/architecture-and-ethics.png" alt="Standards-Aligned Defensive Design showing policy, enforcement, analyst-assistance, and audit-evidence responsibilities"></a>
+    </td>
+  </tr>
+</table>
+
 ## Decision flow
 
 ```mermaid
@@ -137,6 +186,7 @@ These references guide the educational model; they do not imply certification or
 app/                  Next.js pages and route handlers
 components/           Modular dashboard and analyst workflow UI
 docs/                 Architecture, threat model, and release notes
+images/               Current v0.2.0 interface screenshots used in this README
 lib/                  Policy, validation, scenario, vault, audit, and DB logic
 tests/                Policy and persistence regression suite
 data/                 Runtime SQLite location (database files are ignored)
