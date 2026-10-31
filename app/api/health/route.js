@@ -1,10 +1,13 @@
+import { rejectNonLocalRequest } from '@/lib/api'
 import { NextResponse } from 'next/server'
 import { getAuditIntegrity, getDecisionSummary } from '@/lib/db'
 import { policyVersion } from '@/lib/policies'
 
 export const dynamic = 'force-dynamic'
 
-export async function GET() {
+export async function GET(request) {
+  const rejection = rejectNonLocalRequest(request)
+  if (rejection) return rejection
   const integrity = getAuditIntegrity()
   return NextResponse.json(
     {

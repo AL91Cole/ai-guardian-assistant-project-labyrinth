@@ -167,7 +167,7 @@ export default function Dashboard({ initialData }) {
                 <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300 md:text-base">An explainable zero-trust training environment with fail-closed policy decisions, defensive deception, analyst triage, and hash-linked evidence.</p>
               </div>
               <div className="max-w-md rounded-[24px] border border-white/10 bg-slate-950/60 p-4 text-sm leading-6 text-slate-300">
-                <strong className="text-white">Ethical boundary:</strong> all identities, secrets, attacks, and containment actions are simulated. The advisory layer cannot authorize access.
+                <strong className="text-white">Ethical boundary:</strong> use fictional identities and notes only. Inputs are stored locally until reset and are not encrypted. Attacks and containment are simulated; the advisory layer cannot authorize access.
               </div>
             </div>
             <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">

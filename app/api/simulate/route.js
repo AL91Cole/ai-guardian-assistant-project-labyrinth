@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { errorResponse, rateLimitResponse, readJsonBody } from '@/lib/api'
+import { errorResponse, rateLimitResponse, readJsonBody, rejectNonLocalRequest } from '@/lib/api'
 import {
   getAuditIntegrity,
   getDecisionSummary,
@@ -14,6 +14,8 @@ import { consumeRateLimit, getRateLimitHeaders } from '@/lib/rate-limit'
 export const dynamic = 'force-dynamic'
 
 export async function POST(request) {
+  const rejection = rejectNonLocalRequest(request)
+  if (rejection) return rejection
   const rateLimit = consumeRateLimit(request, { bucket: 'simulate', limit: 40 })
   if (!rateLimit.allowed) return rateLimitResponse(rateLimit)
   const headers = getRateLimitHeaders(rateLimit)

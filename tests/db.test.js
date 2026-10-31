@@ -11,6 +11,8 @@ describe('SQLite audit and alert workflow', () => {
     process.env.LABYRINTH_DATA_DIR = dataDirectory
     const database = await import('../lib/db.js')
 
+    expect(fs.existsSync(path.join(dataDirectory, 'labyrinth.sqlite'))).toBe(false)
+
     expect(database.getDecisionSummary()).toMatchObject({
       totalRequests: 3,
       allowCount: 1,
@@ -19,6 +21,7 @@ describe('SQLite audit and alert workflow', () => {
       openAlerts: 1,
     })
     expect(database.getAuditIntegrity()).toMatchObject({ valid: true, checked: 3 })
+    expect(fs.existsSync(path.join(dataDirectory, 'labyrinth.sqlite'))).toBe(true)
 
     const scenario = scenarios.find((item) => item.id === 'privilege-escalation')
     const evaluation = evaluateRequest({ ...scenario.input, scenarioId: scenario.id })

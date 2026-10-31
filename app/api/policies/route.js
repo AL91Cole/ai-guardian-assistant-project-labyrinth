@@ -1,3 +1,4 @@
+import { rejectNonLocalRequest } from '@/lib/api'
 import { NextResponse } from 'next/server'
 import {
   actionOptions,
@@ -12,7 +13,9 @@ import {
 
 export const dynamic = 'force-dynamic'
 
-export async function GET() {
+export async function GET(request) {
+  const rejection = rejectNonLocalRequest(request)
+  if (rejection) return rejection
   return NextResponse.json({
     roles: roleOptions,
     actions: actionOptions,
@@ -22,5 +25,5 @@ export async function GET() {
     identityStatuses: identityStatusOptions,
     deviceCompliance: deviceComplianceOptions,
     networkZones: networkZoneOptions,
-  })
+  }, { headers: { 'Cache-Control': 'no-store' } })
 }

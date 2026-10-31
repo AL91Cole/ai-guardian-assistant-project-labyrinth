@@ -2,6 +2,12 @@
 
 Project Labyrinth is a defensive simulation and should not protect real data. Please do not submit real secrets, credentials, personal information, or production incident evidence to the app or repository.
 
+The supported launch commands bind to loopback. A request boundary rejects
+non-loopback hosts and cross-origin browser requests to reduce accidental
+exposure and DNS-rebinding risk. The application has no user authentication;
+any local user who can reach its port can read or change the shared demo state.
+Do not publish it through a tunnel or proxy that rewrites requests as local.
+
 ## Supported versions
 
 | Version | Supported |
