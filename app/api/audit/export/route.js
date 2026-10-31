@@ -1,9 +1,12 @@
+import { rejectNonLocalRequest } from '@/lib/api'
 import { getAllLogs, getAuditIntegrity } from '@/lib/db'
 import { logsToCsv } from '@/lib/export'
 
 export const dynamic = 'force-dynamic'
 
 export async function GET(request) {
+  const rejection = rejectNonLocalRequest(request)
+  if (rejection) return rejection
   const format = new URL(request.url).searchParams.get('format')?.toLowerCase() || 'json'
   const logs = getAllLogs(1_000)
   const timestamp = new Date().toISOString().replaceAll(':', '-').replaceAll('.', '-')
@@ -22,7 +25,7 @@ export async function GET(request) {
   if (format !== 'json') {
     return Response.json(
       { ok: false, error: 'Invalid format', message: 'Use format=json or format=csv.' },
-      { status: 400 },
+      { status: 400, headers: { 'Cache-Control': 'no-store' } },
     )
   }
 

@@ -1,12 +1,14 @@
 import { NextResponse } from 'next/server'
-import { errorResponse, rateLimitResponse, readJsonBody } from '@/lib/api'
+import { errorResponse, rateLimitResponse, readJsonBody, rejectNonLocalRequest } from '@/lib/api'
 import { getDecisionSummary, getRecentAlerts, updateAlert } from '@/lib/db'
 import { consumeRateLimit, getRateLimitHeaders } from '@/lib/rate-limit'
 import { validateAlertUpdate, validatePositiveInteger } from '@/lib/validation'
 
 export const dynamic = 'force-dynamic'
 
-export async function GET() {
+export async function GET(request) {
+  const rejection = rejectNonLocalRequest(request)
+  if (rejection) return rejection
   return NextResponse.json(
     { alerts: getRecentAlerts(50), summary: getDecisionSummary() },
     { headers: { 'Cache-Control': 'no-store' } },
@@ -14,6 +16,8 @@ export async function GET() {
 }
 
 export async function PATCH(request) {
+  const rejection = rejectNonLocalRequest(request)
+  if (rejection) return rejection
   const rateLimit = consumeRateLimit(request, { bucket: 'alert-update', limit: 60 })
   if (!rateLimit.allowed) return rateLimitResponse(rateLimit)
   const headers = getRateLimitHeaders(rateLimit)

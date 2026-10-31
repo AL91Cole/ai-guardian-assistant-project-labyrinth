@@ -10,10 +10,10 @@ coverage/
 !.env.example
 
 # Runtime database files
-data/*.sqlite
-data/*.sqlite-*
-data/*.db
-data/*.db-*
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
 
 # Logs and operating-system files
 *.log

@@ -5,9 +5,9 @@
   "type": "module",
   "description": "An explainable zero-trust detection and response lab with defensive deception, alert triage, and tamper-evident audit logging.",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "node --import ./scripts/private-runtime.mjs ./node_modules/next/dist/bin/next dev --hostname 127.0.0.1",
+    "build": "node --import ./scripts/private-runtime.mjs ./node_modules/next/dist/bin/next build",
+    "start": "node --import ./scripts/private-runtime.mjs ./node_modules/next/dist/bin/next start --hostname 127.0.0.1",
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -15,14 +15,14 @@
   },
   "dependencies": {
     "better-sqlite3": "^12.8.0",
-    "next": "^16.3.0",
+    "next": "16.4.3",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.1",
     "eslint": "^9.39.5",
-    "eslint-config-next": "^16.3.0",
+    "eslint-config-next": "16.4.3",
     "postcss": "^8.5.26",
     "tailwindcss": "^4.2.2",
     "vitest": "^4.1.10"

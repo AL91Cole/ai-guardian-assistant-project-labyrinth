@@ -16,9 +16,19 @@ describe('demo rate limiter', () => {
     expect(consumeRateLimit(request, options)).toMatchObject({ allowed: true, remaining: 0 })
     expect(consumeRateLimit(request, options)).toMatchObject({ allowed: false, remaining: 0 })
     expect(consumeRateLimit(requestFrom('192.0.2.11'), options)).toMatchObject({
-      allowed: true,
-      remaining: 1,
+      allowed: false,
+      remaining: 0,
     })
+  })
+
+  it('does not let forged forwarding headers reset the shared local quota', () => {
+    const options = { bucket: 'unit-test-forged-headers', limit: 1 }
+    expect(consumeRateLimit(requestFrom('192.0.2.20'), options).allowed).toBe(true)
+    const forged = new Request('http://localhost/api/test', {
+      headers: { 'X-Forwarded-For': '198.51.100.1', 'X-Real-IP': '203.0.113.1' },
+    })
+    expect(consumeRateLimit(forged, options).allowed).toBe(false)
+    expect(consumeRateLimit(forged, { ...options, bucket: 'unit-test-separate-route' }).allowed).toBe(true)
   })
 
   it('formats the response quota headers', () => {
